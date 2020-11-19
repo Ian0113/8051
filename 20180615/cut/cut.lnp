@@ -1,0 +1,7 @@
+"cut.obj",
+"ADC.obj",
+"KEY.obj",
+"LCD.obj",
+"ROT.obj" 
+TO "cut" 
+RAMSIZE(256) 

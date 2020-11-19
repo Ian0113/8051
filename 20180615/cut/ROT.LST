@@ -1,0 +1,74 @@
+C51 COMPILER V7.50   ROT                                                                   06/15/2018 18:15:39 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE ROT
+OBJECT MODULE PLACED IN ROT.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ROT.c BROWSE DEBUG OBJECTEXTEND TABS(3)
+
+line level    source
+
+   1          
+   2          
+   3          #include "MAIN.H" 
+   4          
+   5          extern uchar OLD,MENUPTR,B_CNT,LCD_CNT;
+   6          uchar CW_CNT,CCW_CNT;
+   7          
+   8          void ROT_SCAN(uint DelN)       
+   9          {
+  10   1         uchar j,k,NEW,ABTEMP;
+  11   1      WAITN:   
+  12   1         DelN--;  
+  13   1         j=ROTA; k=ROTB; NEW=k*2+j;
+  14   1         ABTEMP=NEW^OLD;
+  15   1         if (ABTEMP!=0) {
+  16   2            OLD=NEW;
+  17   2            if (ABTEMP==2) {
+  18   3               if ((NEW==1)|(NEW==2)) ROT_RIGHT();    
+  19   3               if ((NEW==0)|(NEW==3)) ROT_LEFT();  
+  20   3            }  
+  21   2            else {
+  22   3               if ((NEW==0)|(NEW==3)) ROT_RIGHT();  
+  23   3               if ((NEW==1)|(NEW==2)) ROT_LEFT();    
+  24   3            }     
+  25   2         }
+  26   1         if (DelN != 0) goto WAITN; 
+  27   1      }
+  28          
+  29          void ROT_LEFT(void) 
+  30          {
+  31   1         CW_CNT=0; CCW_CNT+=1;
+  32   1         if (CCW_CNT==4) {
+  33   2            CCW_CNT=0;  
+  34   2            if (MENUPTR==0) MENUPTR=5;
+  35   2            else MENUPTR-=1;
+  36   2            BEEP_PRO(); MENU_DISP();  
+  37   2         }
+  38   1      }
+  39          
+  40          void ROT_RIGHT(void) 
+  41          {
+  42   1         CCW_CNT=0; CW_CNT+=1;
+  43   1         if (CW_CNT==4) {
+  44   2            CW_CNT=0; 
+  45   2            if (MENUPTR==5) MENUPTR=0;
+  46   2            else MENUPTR+=1;
+  47   2            BEEP_PRO(); MENU_DISP();  
+  48   2         }
+  49   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    223    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V7.50   ROT                                                                   06/15/2018 18:15:39 PAGE 2   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

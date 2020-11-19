@@ -1,0 +1,56 @@
+C51 COMPILER V7.50   COUNTER                                                               06/28/2018 21:43:43 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE COUNTER
+OBJECT MODULE PLACED IN COUNTER.OBJ
+COMPILER INVOKED BY: D:\Keil\C51\BIN\C51.EXE COUNTER.c BROWSE DEBUG OBJECTEXTEND TABS(3)
+
+line level    source
+
+   1          /*******************************************
+   2                9A417018
+   3          *******************************************/
+   4          
+   5          #include "MAIN.H" 
+   6          //extern int count[];
+   7          
+   8          void UP_COUNTER(int *count,int min,int max)
+   9          {
+  10   1         if(*count>=max|*count<min)
+  11   1         {
+  12   2            *count=min;
+  13   2         }
+  14   1         else
+  15   1         {
+  16   2            *count+=1;
+  17   2         }
+  18   1      }
+  19          
+  20          void DOWN_COUNTER(int *count,int max,int min)
+  21          {
+  22   1         if(*count>max|*count<=min)
+  23   1         {
+  24   2            *count=max;
+  25   2         }
+  26   1         else
+  27   1         {
+  28   2            *count-=1;
+  29   2         }
+  30   1      }
+  31          
+  32          
+  33          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    142    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      14
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

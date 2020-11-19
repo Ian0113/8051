@@ -1,0 +1,104 @@
+C51 COMPILER V7.50   COUNTER                                                               06/20/2018 01:44:18 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE COUNTER
+OBJECT MODULE PLACED IN COUNTER.OBJ
+COMPILER INVOKED BY: D:\Keil\C51\BIN\C51.EXE COUNTER.c BROWSE DEBUG OBJECTEXTEND TABS(3)
+
+line level    source
+
+   1          /*******************************************
+   2                9A417018
+   3          *******************************************/
+   4          
+   5          #include "MAIN.H" 
+   6          //extern int count[];
+   7          
+   8          void UP_CARRY( int *count_array , uint count_len )
+   9          {
+*** WARNING C235 IN LINE 9 OF COUNTER.C: parameter 1: different types
+  10   1         uint i;
+  11   1         uint count_index = count_len-1;
+  12   1         if(count_index>=0)
+  13   1         {
+  14   2            if( count_array[count_index] == 10 )
+  15   2            {
+  16   3               count_array[count_index]=0;
+  17   3               if(count_index > 0)
+  18   3               {
+  19   4                  count_array[count_index-1]+=1;
+  20   4                  UP_CARRY( count_array , count_index );
+*** WARNING C182 IN LINE 20 OF COUNTER.C: pointer to different objects
+  21   4               }
+  22   3               else
+  23   3               {
+  24   4                  //start
+  25   4                  for(i=0;i<count_len;i++)
+  26   4                  {
+  27   5                     count_array[i]=0;
+  28   5                  }
+  29   4               }
+  30   3            }
+  31   2         }
+  32   1      }
+  33          void CALL_UP( int *count_array , uint count_len )
+  34          {
+*** WARNING C235 IN LINE 34 OF COUNTER.C: parameter 1: different types
+  35   1         count_array[count_len-1] += 1;
+  36   1         UP_CARRY( count_array , count_len );
+  37   1      }
+  38          
+  39          
+  40          
+  41          void DOWN_CARRY( int *count_array , uint count_len )
+  42          {
+*** WARNING C235 IN LINE 42 OF COUNTER.C: parameter 1: different types
+  43   1         uint i;
+  44   1         uint count_index = count_len-1;
+  45   1         if(count_index>=0)
+  46   1         {
+  47   2            if( count_array[count_index] == -1 )
+  48   2            {
+  49   3               count_array[count_index]=9;
+  50   3               if(count_index > 0)
+  51   3               {
+C51 COMPILER V7.50   COUNTER                                                               06/20/2018 01:44:18 PAGE 2   
+
+  52   4                  count_array[count_index-1]-=1;
+  53   4                  DOWN_CARRY( count_array , count_index );
+*** WARNING C182 IN LINE 53 OF COUNTER.C: pointer to different objects
+  54   4               }
+  55   3               else
+  56   3               {
+  57   4                  //start
+  58   4                  for(i=0;i<count_len;i++)
+  59   4                  {
+  60   5                     count_array[i]=9;
+  61   5                  }
+  62   4               }
+  63   3            }
+  64   2         }
+  65   1      }
+  66          void CALL_DOWN( int *count_array , uint count_len )
+  67          {
+*** WARNING C235 IN LINE 67 OF COUNTER.C: parameter 1: different types
+  68   1         count_array[count_len-1] -= 1;
+  69   1         DOWN_CARRY( count_array , count_len );
+  70   1      }
+  71          
+  72          
+  73          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    354    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  6 WARNING(S),  0 ERROR(S)

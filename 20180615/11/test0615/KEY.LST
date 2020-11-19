@@ -1,0 +1,69 @@
+C51 COMPILER V7.50   KEY                                                                   06/20/2018 01:44:18 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE KEY
+OBJECT MODULE PLACED IN KEY.OBJ
+COMPILER INVOKED BY: D:\Keil\C51\BIN\C51.EXE KEY.c BROWSE DEBUG OBJECTEXTEND TABS(3)
+
+line level    source
+
+   1          /*******************************************
+   2                9A417018
+   3          *******************************************/
+   4          
+   5          #include "MAIN.H" 
+   6          
+   7          extern uchar KEY_NO,K_TEMP;
+   8          
+   9          void SCAN_ON(void)
+  10          {
+  11   1         KEY_NO=0xFF; K_TEMP=0xFF;
+  12   1         P2=0xFE;       // P20=0掃描第4行
+  13   1         if (P2==0xEE) {K_TEMP=P2; KEY_NO=0x0F; return;} 
+  14   1         if (P2==0xDE) {K_TEMP=P2; KEY_NO=0x0E; return;}  
+  15   1         if (P2==0xBE) {K_TEMP=P2; KEY_NO=0x0D; return;}   
+  16   1         if (P2==0x7E) {K_TEMP=P2; KEY_NO=0x0C; return;}  
+  17   1             
+  18   1         P2=0xFD;       // P21=0掃描第3行
+  19   1         if (P2==0xED) {K_TEMP=P2; KEY_NO=0x0B; return;}   
+  20   1         if (P2==0xDD) {K_TEMP=P2; KEY_NO=0x0A; return;} 
+  21   1         if (P2==0xBD) {K_TEMP=P2; KEY_NO=9; return;} 
+  22   1         if (P2==0x7D) {K_TEMP=P2; KEY_NO=8; return;}  
+  23   1             
+  24   1         P2=0xFB;       // P22=0掃描第2行
+  25   1         if (P2==0xEB) {K_TEMP=P2; KEY_NO=7; return;}   
+  26   1         if (P2==0xDB) {K_TEMP=P2; KEY_NO=6; return;}   
+  27   1         if (P2==0xBB) {K_TEMP=P2; KEY_NO=5; return;}  
+  28   1         if (P2==0x7B) {K_TEMP=P2; KEY_NO=4; return;}  
+  29   1            
+  30   1         P2=0xF7;       // P23=0掃描第1行
+  31   1         if (P2==0xE7) {K_TEMP=P2; KEY_NO=3; return;}  
+  32   1         if (P2==0xD7) {K_TEMP=P2; KEY_NO=2; return;}  
+  33   1         if (P2==0xB7) {K_TEMP=P2; KEY_NO=1; return;}  
+  34   1         if (P2==0x77) {K_TEMP=P2; KEY_NO=0; return;} 
+  35   1      }
+  36          
+  37          void SCAN_OFF(void)
+  38          {
+  39   1       LOOP:   
+  40   1         P2=0xF0;
+  41   1         while (P2!=0xF0);
+  42   1         Delay(5000);
+  43   1         if (P2!=0xF0) goto LOOP;
+  44   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    231    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+C51 COMPILER V7.50   KEY                                                                   06/20/2018 01:44:18 PAGE 2   
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
